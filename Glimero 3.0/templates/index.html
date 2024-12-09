@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Info tour România</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/style/index.css">
+    
+</head>
+<body>
+
+    <!-- casuta de cautare -->
+    <div class="search-section">
+     
+        <div class="text-container">
+            <h1>Conectăm utilizatorii cu furnizori de încredere</h1>
+            <p>~ Găsiți rapid și ușor informațiile de care aveți nevoie ~</p>
+        </div>
+        <!-- bara navigare -->
+        <div class="navbar">
+            <a href="{{ url_for('index') }}" class="{% if request.path == '/' %}active{% endif %}" >Detalii Căutare</a>
+            <a href="{{ url_for('map') }}" class="{% if request.path == '/map' %}active{% endif %}">Hartă</a>
+        </div>
+        <form method="POST" class="search-container">
+           
+            <!-- cauta denumirea -->
+            <input 
+                type="text" 
+                name="name" 
+                class="form-control" 
+                placeholder="Introduceți denumirea" 
+                value="{{ filters.name }}">
+
+            <!-- dropdown pentru judet -->
+            <select name="county" class="form-control dropdown">
+                <option value="">Selectează Județul</option>
+                {% for county in counties %}
+                    <option value="{{ county }}" {% if county == filters.county %}selected{% endif %}>{{ county }}</option>
+                {% endfor %}
+            </select>
+
+            <!-- dropdown prntru categorie -->
+            <select name="category" class="form-control dropdown">
+                <option value="">Selectează Categoia</option>
+                {% for category in categories %}
+                    <option value="{{ category }}" {% if category == filters.category %}selected{% endif %}>{{ category }}</option>
+                {% endfor %}
+            </select>
+            
+
+            <!-- valori capacitate de la .... pana la ..... -->
+            <div class="capacity-range">
+                <label for="min_capacity" class="capacity-label">Capacitate</label>
+                <input 
+                    type="number" 
+                    id="min_capacity" 
+                    name="min_capacity" 
+                    class="form-control capacity-input" 
+                    placeholder="de la" 
+                    value="{{ filters.min_capacity }}">
+                <label for="max_capacity" class="capacity-label"></label>
+                <input 
+                    type="number" 
+                    id="max_capacity" 
+                    name="max_capacity" 
+                    class="form-control capacity-input" 
+                    placeholder="până la" 
+                    value="{{ filters.max_capacity }}">
+            </div>
+
+            <button type="submit" class="button">Caută</button>
+        </form>
+    </div>
+
+    <div class="gasit">
+        {% if result_count > 0 %}
+            <p><strong>{{ result_count }}</strong> unități găsite</p>
+        {% else %}
+            <p>Nicio unitate găsită</p>
+        {% endif %}
+    </div>
+
+
+
+    <!-- sectiunea de rezultate -->
+    <div class="results-container">
+    {% if results %}
+        {% for result in results %}
+            <div class="result-card">
+                <h5>{{ result['name'] }}</h5>
+                <p><strong>Județ:</strong> {{ result['county'] }}</p>
+                <p><strong>Categorie:</strong> {{ result['category'] }}</p>
+                <p><strong>Capacitate:</strong> {{ result['capacity'] }}</p>
+                <p><strong>Adresă:</strong> {{ result['address'] }}</p>
+
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#detailsModal{{ loop.index }}">
+                    Vezi Detalii
+                </button>
+            </div>
+
+            <!-- casuta de detalii pe care ne duce butonul "Vezi Detalii" -->
+            <div class="modal fade" id="detailsModal{{ loop.index }}" tabindex="-1" aria-labelledby="detailsModalLabel{{ loop.index }}" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="detailsModalLabel{{ loop.index }}">Detalii pentru {{ result['name'] }}</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <ul>
+                                {% for detail in result['details'] %}
+                                    {% if detail.strip() != "" %}  
+                                        <li>{{ detail }}</li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+</div>
+
+
+</body>
+
+<script src="/jsFile/global.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.4.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</html>

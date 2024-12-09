@@ -1,0 +1,250 @@
+
+/*------------- bara de navigare ------------*/
+
+.navbar {
+    display: flex;
+    justify-content: center;
+    margin-bottom: -142px;
+    margin-left: -875px;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: #000000;
+    width: 500;
+    padding: 10px 20px;
+    border-radius: 10px 10px 0px 0px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    background: rgba(174, 173, 173, 0.889);
+}
+
+.navbar a.active {
+    background: rgba(255, 255, 255, 0.831);
+    color: rgb(0, 0, 0);
+}
+
+
+
+/*------------- caseta de cautare ------------*/
+.search-section {
+    background-image: url('/assets/descărcare\ \(2\).jpeg'); 
+    background-size: cover;
+    background-position: center;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    color: white;
+    text-align: center;
+}
+
+.search-container {
+    background: rgba(255, 255, 255, 0.831); 
+    border-radius: 0px 8px 8px 8px;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 80%;
+    max-width: 1100px;
+    margin-top: 50px;
+}
+
+.form-control, .btn-primary {
+    min-width: 100px;
+    max-width: 200px;
+    flex: 1;
+}
+
+.search-button {
+    flex: 0 0 auto; 
+}
+
+.text-container {
+    margin-bottom: 20px;
+}
+
+.text-container h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.text-container p {
+    font-size: 1.4rem;
+    margin-top: 10px;
+    color: white; 
+    text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.8);
+}
+
+/*------------- introduceti denumirea - autocomplete------------*/
+.autocomplete-suggestions {
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.suggestion-item {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.suggestion-item:hover {
+    background-color: #f0f0f0;
+}
+
+
+/*------------- carduri cu rezultatele gasite------------*/
+.gasit{ 
+    text-align: center;
+    padding: 20px 10px;
+}
+
+.results-container {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px; 
+}
+
+.result-card {
+    width: 800px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.result-card h5 {
+    margin: 0 0 10px 0;
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.result-card p {
+    margin: 5px 0;
+    color: #555;
+}
+
+.result-card {
+    width: 800px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.result-card .btn {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+}
+
+/*------------- caseta de cautare - buton de cautare ------------*/
+.button {
+    background-color: #a573fb; 
+    color: white;  
+    border: none;  
+    padding: 7px 20px;  
+    text-align: center;  
+    text-decoration: none;  
+    display: inline-block;  
+    font-size: 16px;  
+    border-radius: 8px;  
+    cursor: pointer; 
+    transition: all 0.3s ease;  
+}
+
+.button:hover {
+    background-color: #9542e3; 
+    transform: scale(1.05); 
+}
+
+.button:active {
+    background-color: #9542e3;  
+    transform: scale(0.30);  
+}
+
+/*------------- bara de navigare - range capacitate ------------*/
+.capacity-range {
+    display: flex;
+    align-items: center;
+    gap: 10px;  
+}
+
+.capacity-label {
+    font-size: 14px;
+    color: #555;  
+    margin: 0;
+    white-space: nowrap;  
+}
+
+.capacity-input {
+    width: 80px;  
+    text-align: left;
+}
+
+
+
+
+/*------------- fereastra detalii ------------*/
+.modal-body ul {
+    list-style-type: none;  
+    padding: 0;
+    margin: 0;
+}
+
+.modal-body ul li {
+    margin-bottom: 8px;  
+    font-size: 14px;
+    color: #333;
+}
+
+.modal-body ul li strong {
+    color: #000;
+    font-weight: bold;
+}
+
+.btn-primary {
+    background-color: #a573fb;  
+    border: none;  
+    color: white;  
+    padding: 10px 20px;  
+    border-radius: 8px;  
+    font-size: 16px;  
+    cursor: pointer;  
+    transition: background-color 0.3s ease;  
+}
+
+.btn-primary:hover {
+    background-color: #9542e3; 
+}
+
+.btn-primaryn:active {
+    background-color: #9542e3;  
+    transform: scale(0.98);  
+}
+
+
+/*------------- stil harta ------------*/
+#map {
+    display: flex;
+    justify-content: center;  
+    align-items: center;  
+    width: 80%;  
+    height: 500px; 
+    border: 1px solid #ccc; 
+    border-radius: 8px; 
+    margin: 50px 150px 100px 150px;
+}
